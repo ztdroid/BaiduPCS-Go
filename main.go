@@ -86,6 +86,9 @@ func init() {
 		pcsweb.GlobalSessions.Init()
 		go pcsweb.GlobalSessions.GC()
 	}
+
+	db := pcsweb.DB
+	db.AutoMigrate()
 }
 
 func main() {

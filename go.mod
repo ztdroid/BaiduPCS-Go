@@ -13,6 +13,7 @@ require (
 	github.com/golang/protobuf v1.3.2
 	github.com/iikira/Baidu-Login v1.2.2-0.20180427090606-ecf146973528
 	github.com/iikira/baidu-tools v0.0.0-20190609113215-4dd64618064d
+	github.com/jinzhu/gorm v1.9.12
 	github.com/json-iterator/go v1.1.7
 	github.com/kardianos/osext v0.0.0-20170510131534-ae77be60afb1
 	github.com/kr/pretty v0.1.0 // indirect
@@ -23,7 +24,7 @@ require (
 	github.com/peterh/liner v1.1.1-0.20190305032635-6f820f8f90ce
 	github.com/shiena/ansicolor v0.0.0-20151119151921-a422bbe96644 // indirect
 	github.com/urfave/cli v1.21.1-0.20190817182405-23c83030263f
-	golang.org/x/crypto v0.0.0-20190820162420-60c769a6c586
+	golang.org/x/crypto v0.0.0-20191205180655-e7c4368fe9dd
 	golang.org/x/net v0.0.0-20190404232315-eb5bcb51f2a3
 	golang.org/x/sys v0.0.0-20191025090151-53bf42e6b339
 )
