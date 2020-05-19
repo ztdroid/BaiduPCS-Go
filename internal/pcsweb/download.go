@@ -51,6 +51,7 @@ var (
 	ErrDlinkNotFound = errors.New("未取得下载链接")
 	MsgBody string
 	DownloaderMap = make(map[int]*downloader.Downloader)
+	db = DB
 )
 
 // ListTask 队列状态 (基类)
@@ -91,7 +92,27 @@ type (
 	LocateDownloadOption struct {
 		FromPan bool
 	}
+
+	dtasks struct {
+		ID            int // 任务id
+		Status        string
+		Speed         string
+		Error         string
+		Name          string
+		Istatus       int
+		Itype         int
+		TotalSize    int
+		Percent       int
+		DownloadSize int
+		TimeUsed     string
+		TimeLeft     string
+	}
 )
+func init() {
+
+	db.AutoMigrate(&dtasks{})
+	defer db.Close()
+}
 
 func downloadPrintFormat(load int) string {
 	if load <= 1 {

@@ -89,6 +89,7 @@ func init() {
 
 	db := pcsweb.DB
 	db.AutoMigrate()
+	defer db.Close()
 }
 
 func main() {
@@ -101,11 +102,15 @@ func main() {
 		Name:  "liuzhuoling",
 		Email: "liuzhuoling2011@hotmail.com",
 	}
+	guidotao := cli.Author{
+		Name:  "zhangtao",
+		Email: "zhangtao_ok@foxmail.com",
+	}
 	iikira := cli.Author{
 		Name:  "iikira",
 		Email: "i@mail.iikira.com",
 	}
-	app.Authors = []cli.Author{liuzhuoling, iikira}
+	app.Authors = []cli.Author{guidotao, liuzhuoling, iikira}
 	app.Description = "BaiduPCS-Go 使用Go语言编写的百度网盘命令行客户端, 可以让你高效的使用百度云"
 	app.Flags = []cli.Flag{
 		cli.BoolFlag{
