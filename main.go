@@ -12,6 +12,7 @@ import (
 	"github.com/iikira/BaiduPCS-Go/baidupcs"
 	"github.com/iikira/BaiduPCS-Go/internal/pcscommand"
 	"github.com/iikira/BaiduPCS-Go/internal/pcsconfig"
+	"github.com/iikira/BaiduPCS-Go/internal/pcsdb"
 	_ "github.com/iikira/BaiduPCS-Go/internal/pcsinit"
 	"github.com/iikira/BaiduPCS-Go/internal/pcsweb"
 	"github.com/iikira/BaiduPCS-Go/pcstable"
@@ -87,9 +88,9 @@ func init() {
 		go pcsweb.GlobalSessions.GC()
 	}
 
-	db := pcsweb.DB
-	db.AutoMigrate()
-	defer db.Close()
+	db := pcsdb.DB
+	db.AutoMigrate(&pcsconfig.Baidu{})
+	// defer db.Close()
 }
 
 func main() {

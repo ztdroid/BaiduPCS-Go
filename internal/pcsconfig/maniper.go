@@ -1,15 +1,21 @@
 package pcsconfig
 
 import (
+	"strings"
+
+	"github.com/iikira/BaiduPCS-Go/internal/pcsdb"
 	"github.com/iikira/BaiduPCS-Go/pcsutil/converter"
 	"github.com/iikira/BaiduPCS-Go/requester"
-	"strings"
 )
 
 const (
 	opDelete = "delete"
 	opSwitch = "switch"
 	opGet    = "get"
+)
+
+var (
+	db = pcsdb.DB
 )
 
 func (c *PCSConfig) manipUser(op string, baiduBase *BaiduBase) (*Baidu, error) {
@@ -127,6 +133,13 @@ func (c *PCSConfig) SetupUserByBDUSS(bduss, ptoken, stoken string) (baidu *Baidu
 	b.STOKEN = stoken
 
 	c.BaiduUserList = append(c.BaiduUserList, b)
+
+	if db.NewRecord(b) == true {
+		db.Create(&b)
+	} else {
+		db.Save(&b)
+	}
+	// defer db.Close()
 
 	// 自动切换用户
 	c.setupNewUser(b)
